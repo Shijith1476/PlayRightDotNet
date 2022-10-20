@@ -18,13 +18,13 @@ namespace Playwright.Specflow.EndToEnd.Hooks
         ///  Reset the calculator before each scenario tagged with "Calculator"
         /// </summary>
         [BeforeScenario("Smoke")]
-        public async void BeforeScenarioAsync(LoginPageObject loginPageObject)
+        public async void BeforeScenarioAsync(DemoPage loginPageObject)
         {
             await loginPageObject.EnsureSellerBazarIsOpenAndResetAsync();
         }
 
         [BeforeScenario]
-        public async Task StartTracingAsync(LoginPageObject loginPageObject)
+        public async Task StartTracingAsync(DemoPage loginPageObject)
         {
             var tracing = await loginPageObject.Tracing;
             await tracing.StartAsync(new TracingStartOptions
@@ -36,7 +36,7 @@ namespace Playwright.Specflow.EndToEnd.Hooks
         }
 
         [AfterScenario]
-        public async Task StopTracingAsync(LoginPageObject loginPageObject)
+        public async Task StopTracingAsync(DemoPage loginPageObject)
         {
             var tracing = await loginPageObject.Tracing;
             await tracing.StopAsync(new TracingStopOptions()

@@ -1,9 +1,10 @@
-﻿Feature: Login
+﻿Feature: Demo Features
+
 
 @regression
-Scenario: Login to Bazar Application
-	Given I navigate to Seller Portal Application
-	When I enter following login details
-	    |Email                         |Password    |
-		|amitha.ma+1@experionglobal.com|Password@123|
-	Then I see the May Bazar Dashboard
+Scenario: Naviagte to Demo Application and Submit the user details
+	Given I navigate to Demo Application
+	 When I enter following details
+	    | FullName  | Email        | CurrentAddress | PermanentAddress |
+	    | Test Name | as@gmail.com | Test Address   | Test Address 2   |
+	Then Submit the Form

@@ -10,33 +10,32 @@ namespace Playwright.Specflow.EndToEnd.StepDefinitions
     public sealed class LoginStepDefinitions
     {
         //Page Object for Calculator
-        private readonly LoginPageObject _LoginPageObject;
+        private readonly DemoPage _demoObject;
 
-        public LoginStepDefinitions(LoginPageObject LoginPageObject)
+        public LoginStepDefinitions(DemoPage DemoPageObject)
         {
-            _LoginPageObject = LoginPageObject;
+            _demoObject = DemoPageObject;
         }
 
-        [Given("I navigate to Seller Portal Application")]
+        [Given("I navigate to Demo Application")]
         public async Task GoToBazar()
         {
             //delegate to Page Object
-            await _LoginPageObject.EnsureSellerBazarIsOpenAndResetAsync();
+            await _demoObject.EnsureSellerBazarIsOpenAndResetAsync();
         }
 
         
-        [Then("I see the May Bazar Dashboard")]
+        [Then("Submit the Form")]
         public async Task WhenTheTwoNumbersAreAddedAsync()
         {
-            //delegate to Page Object
-            await _LoginPageObject.ClickLogin();
+            await _demoObject.ClickSubmit();
         }
 
-        [When("I enter following login details")]
+        [When("I enter following details")]
         public async Task ThenTheResultShouldBeAsync(Table table)
         {
             dynamic data = table.CreateDynamicInstance();
-            await _LoginPageObject.Login((string)data.Email, (string)data.Password);
+            await _demoObject.EnterDetails((string)data.FullName, (string)data.Email, (string)data.CurrentAddress, (string)data.PermanentAddress);
         }
     }
 }
