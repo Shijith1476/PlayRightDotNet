@@ -2,13 +2,14 @@
 using Microsoft.Playwright;
 using SpecFlow.Actions.Playwright;
 
-namespace Playwright.Specflow.EndToEnd.PageObjects
+namespace Playwright.Specflow.EndToEnd.Drivers
 {
-    public class InteractionExtend: Interactions
+    /* Wrapper Class around Playwright Methods*/
+    public class InteractionExtend : Interactions
     {
         private readonly Task<IPage> _page1;
 
-        public InteractionExtend(Task<IPage> page): base(page)
+        public InteractionExtend(Task<IPage> page) : base(page)
         {
             _page1 = page;
         }

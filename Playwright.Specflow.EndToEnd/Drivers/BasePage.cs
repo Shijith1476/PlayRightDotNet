@@ -2,7 +2,7 @@
 using SpecFlow.Actions.Playwright;
 using System.Threading.Tasks;
 
-namespace Playwright.Specflow.EndToEnd.PageObjects
+namespace Playwright.Specflow.EndToEnd.Drivers
 {
     public class BasePage
     {
@@ -11,13 +11,13 @@ namespace Playwright.Specflow.EndToEnd.PageObjects
         public readonly Task<IPage> _page;
 
         public Task<ITracing> Tracing => _tracing;
-        
+
         public BasePage(BrowserDriver browserDriver)
         {
             _browserContext = CreateBrowserContextAsync(browserDriver.Current);
             _tracing = _browserContext.ContinueWith(t => t.Result.Tracing);
             _page = CreatePageAsync(_browserContext);
-            
+
         }
 
         private async Task<IBrowserContext> CreateBrowserContextAsync(Task<IBrowser> browser)
