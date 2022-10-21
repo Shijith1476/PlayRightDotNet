@@ -1,22 +1,23 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Playwright;
 using SpecFlow.Actions.Playwright;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Playwright.Specflow.EndToEnd.Drivers
 {
     /* Wrapper Class around Playwright Methods*/
     public class InteractionExtend : Interactions
     {
-        private readonly Task<IPage> _page1;
+        private readonly Task<IPage> _page;
 
         public InteractionExtend(Task<IPage> page) : base(page)
         {
-            _page1 = page;
+            _page = page;
         }
 
-        public async Task GoToUrl1(string url)
+        public async Task<string?> TextContentAsync(string selector)
         {
-            await (await _page1).GotoAsync(url);
+            return await (await _page).TextContentAsync(selector);
         }
 
     }

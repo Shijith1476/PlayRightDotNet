@@ -1,21 +1,20 @@
 ﻿using Playwright.Specflow.EndToEnd.PageObjects;
 using Microsoft.Playwright;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace Playwright.Specflow.EndToEnd.Hooks
 {
-    public class BazarHooks
+    public class Hooks
     {
         private readonly string _traceName;
 
-        public BazarHooks(ScenarioContext scenarioContext)
+        public Hooks(ScenarioContext scenarioContext)
         {
             _traceName = scenarioContext.ScenarioInfo.Title.Replace(" ", "_");
         }
 
         ///<summary>
-        ///  Reset the calculator before each scenario tagged with "Calculator"
+        /// Action/steps need to complete before a specific scenario "Smoke"
         /// </summary>
         [BeforeScenario("Smoke")]
         public async void BeforeScenarioAsync(DemoPage loginPageObject)
@@ -23,6 +22,9 @@ namespace Playwright.Specflow.EndToEnd.Hooks
             await loginPageObject.EnsureSellerBazarIsOpenAndResetAsync();
         }
 
+        ///<summary>
+        /// Action/steps need to complete before each scenario
+        /// </summary>
         [BeforeScenario]
         public async Task StartTracingAsync(DemoPage loginPageObject)
         {
@@ -35,6 +37,9 @@ namespace Playwright.Specflow.EndToEnd.Hooks
             });
         }
 
+        ///<summary>
+        /// Action/steps need to complete After each scenario
+        /// </summary>
         [AfterScenario]
         public async Task StopTracingAsync(DemoPage loginPageObject)
         {

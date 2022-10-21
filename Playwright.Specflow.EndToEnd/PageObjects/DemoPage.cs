@@ -1,7 +1,7 @@
-﻿using FluentAssertions;
-using Playwright.Specflow.EndToEnd.Drivers;
+﻿using Playwright.Specflow.EndToEnd.Drivers;
 using SpecFlow.Actions.Playwright;
-using System.Threading.Tasks;
+using Microsoft.Playwright.NUnit;
+using NUnit.Framework;
 
 namespace Playwright.Specflow.EndToEnd.PageObjects
 {
@@ -16,6 +16,10 @@ namespace Playwright.Specflow.EndToEnd.PageObjects
         private static string CurrentAddress => "id=currentAddress";
         private static string PermanentAddress => "id=permanentAddress";
         private static string Submit => "id=submit";
+        private static string NameText => "#output>div>#name";
+        private static string EmailText => "#output>div>#email";
+        private static string CurrentAddressText => "#output>div>#currentAddress";
+        private static string PermanentAddressText => "#output>div>#permanentAddress";
 
         private InteractionExtend _interactions;
 
@@ -35,12 +39,28 @@ namespace Playwright.Specflow.EndToEnd.PageObjects
         public async Task ClickSubmit()
         {
             await _interactions.ClickAsync(Submit);
+            
         }
 
         public async Task EnsureSellerBazarIsOpenAndResetAsync()
         {         
-                await _interactions.GoToUrl1(SellerUrl);
+                await _interactions.GoToUrl(SellerUrl);
            
+        }
+        public async Task<string?> WaitForNonEmptyResultAsync(string type)
+        {
+            switch(type) {
+                case "name":
+                    return await _interactions.TextContentAsync(NameText);
+                case "email":
+                    return await _interactions.TextContentAsync(EmailText);
+                case "current":
+                    return await _interactions.TextContentAsync(CurrentAddressText);
+                case "permanent":
+                    return await _interactions.TextContentAsync(PermanentAddressText);
+                    default:break;
+            }
+            return null;
         }
 
     }

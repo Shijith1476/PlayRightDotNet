@@ -7,4 +7,6 @@ Scenario: Naviagte to Demo Application and Submit the user details
 	 When I enter following details
 	    | FullName  | Email        | CurrentAddress | PermanentAddress |
 	    | Test Name | as@gmail.com | Test Address   | Test Address 2   |
-	Then Submit the Form
+	Then Submit the Form and verify the details
+	| FullName  | Email        | CurrentAddress | PermanentAddress |
+	    | Test Name | as@gmail.com | Test Address   | Test Address 2   |
