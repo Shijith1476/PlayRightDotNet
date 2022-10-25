@@ -18,13 +18,6 @@ namespace Playwright.Specflow.EndToEnd.StepDefinitions
         {
             _demoObject = DemoPageObject;
         }
-
-        [Given("I navigate to Demo Application")]
-        public async Task GoToBazar()
-        {
-            await _demoObject.EnsureSellerBazarIsOpenAndResetAsync();
-        }
-
         
         [Then("Submit the Form and verify the details")]
         public async Task WhenTheTwoNumbersAreAddedAsync(Table table)
@@ -42,7 +35,7 @@ namespace Playwright.Specflow.EndToEnd.StepDefinitions
             actualPermanet.Should().Be("Permananet Address :"+(string)data.PermanentAddress);
         }
 
-        [When("I enter following details")]
+        [Given("I enter following User details")]
         public async Task ThenTheResultShouldBeAsync(Table table)
         {
             dynamic data = table.CreateDynamicInstance();

@@ -4,6 +4,8 @@ using TechTalk.SpecFlow;
 
 namespace Playwright.Specflow.EndToEnd.Hooks
 {
+
+    [Binding]
     public class Hooks
     {
         private readonly string _traceName;
@@ -16,7 +18,7 @@ namespace Playwright.Specflow.EndToEnd.Hooks
         ///<summary>
         /// Action/steps need to complete before a specific scenario "Smoke"
         /// </summary>
-        [BeforeScenario("Smoke")]
+        [BeforeScenario("regression")]
         public async void BeforeScenarioAsync(DemoPage loginPageObject)
         {
             await loginPageObject.EnsureSellerBazarIsOpenAndResetAsync();

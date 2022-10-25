@@ -92,9 +92,6 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
- testRunner.Given("I navigate to Demo Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "FullName",
                             "Email",
@@ -105,8 +102,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "as@gmail.com",
                             "Test Address",
                             "Test Address 2"});
-#line 7
-  testRunner.When("I enter following details", ((string)(null)), table1, "When ");
+#line 6
+ testRunner.Given("I enter following User details", ((string)(null)), table1, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "FullName",
@@ -118,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "as@gmail.com",
                             "Test Address",
                             "Test Address 2"});
-#line 10
+#line 9
  testRunner.Then("Submit the Form and verify the details", ((string)(null)), table2, "Then ");
 #line hidden
             }

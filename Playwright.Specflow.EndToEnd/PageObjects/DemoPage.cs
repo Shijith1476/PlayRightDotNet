@@ -8,7 +8,7 @@ namespace Playwright.Specflow.EndToEnd.PageObjects
     public class DemoPage : BasePage
     {
         // The page URL
-        private protected const string SellerUrl = "https://demoqa.com/text-box";
+        private protected const string DemoUrl = "https://demoqa.com/text-box";
 
         //Finding elements by ID
         private static string FullName => "id=userName";
@@ -44,7 +44,7 @@ namespace Playwright.Specflow.EndToEnd.PageObjects
 
         public async Task EnsureSellerBazarIsOpenAndResetAsync()
         {         
-                await _interactions.GoToUrl(SellerUrl);
+                await _interactions.GoToUrl(DemoUrl);
            
         }
         public async Task<string?> WaitForNonEmptyResultAsync(string type)

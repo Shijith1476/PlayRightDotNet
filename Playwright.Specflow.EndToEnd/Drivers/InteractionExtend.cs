@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Playwright;
+﻿using Microsoft.Playwright;
 using SpecFlow.Actions.Playwright;
-using static System.Net.Mime.MediaTypeNames;
+using System.Collections.Generic;
 
 namespace Playwright.Specflow.EndToEnd.Drivers
 {
@@ -18,6 +17,11 @@ namespace Playwright.Specflow.EndToEnd.Drivers
         public async Task<string?> TextContentAsync(string selector)
         {
             return await (await _page).TextContentAsync(selector);
+        }
+
+        public async Task CheckAsync(string selector)
+        {
+            await (await _page).CheckAsync(selector);
         }
 
     }

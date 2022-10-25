@@ -1,6 +1,5 @@
 ﻿using Microsoft.Playwright;
 using SpecFlow.Actions.Playwright;
-using System.Threading.Tasks;
 
 namespace Playwright.Specflow.EndToEnd.Drivers
 {
