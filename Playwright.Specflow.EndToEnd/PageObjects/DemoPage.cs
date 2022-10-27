@@ -20,6 +20,9 @@ namespace Playwright.Specflow.EndToEnd.PageObjects
         private static string EmailText => "#output>div>#email";
         private static string CurrentAddressText => "#output>div>#currentAddress";
         private static string PermanentAddressText => "#output>div>#permanentAddress";
+        private static string CheckboxTab => "text=Check Box";
+        private static string HomeCheckbox => "text=Home";
+        private static string CheckboxText => "#result";
 
         private InteractionExtend _interactions;
 
@@ -47,7 +50,7 @@ namespace Playwright.Specflow.EndToEnd.PageObjects
                 await _interactions.GoToUrl(DemoUrl);
            
         }
-        public async Task<string?> WaitForNonEmptyResultAsync(string type)
+        public async Task<string?> VerifyContentTextbox(string type)
         {
             switch(type) {
                 case "name":
@@ -61,6 +64,17 @@ namespace Playwright.Specflow.EndToEnd.PageObjects
                     default:break;
             }
             return null;
+        }
+
+        public async Task<string?> VerifyCheckboxText()
+        {
+            return await _interactions.TextContentAsync(CheckboxText);
+        }
+
+            public async Task ClickCheckBox()
+        {
+            await _interactions.ClickAsync(CheckboxTab);
+            await _interactions.CheckAsync(HomeCheckbox);
         }
 
     }

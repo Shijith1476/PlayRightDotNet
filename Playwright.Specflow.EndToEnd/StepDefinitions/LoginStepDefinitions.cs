@@ -18,28 +18,40 @@ namespace Playwright.Specflow.EndToEnd.StepDefinitions
         {
             _demoObject = DemoPageObject;
         }
-        
+
         [Then("Submit the Form and verify the details")]
-        public async Task WhenTheTwoNumbersAreAddedAsync(Table table)
+        public async Task SubmitVerify(Table table)
         {
             dynamic data = table.CreateDynamicInstance();
             await _demoObject.ClickSubmit();
-            var actualName = await _demoObject.WaitForNonEmptyResultAsync("name");
-            var actualemail = await _demoObject.WaitForNonEmptyResultAsync("email");
-            var actualCurrent = await _demoObject.WaitForNonEmptyResultAsync("current");
-            var actualPermanet = await _demoObject.WaitForNonEmptyResultAsync("permanent");
+            var actualName = await _demoObject.VerifyContentTextbox("name");
+            var actualemail = await _demoObject.VerifyContentTextbox("email");
+            var actualCurrent = await _demoObject.VerifyContentTextbox("current");
+            var actualPermanet = await _demoObject.VerifyContentTextbox("permanent");
 
-            actualName.Should().Be("Name:"+(string)data.FullName);
-            actualemail.Should().Be("Email:"+(string)data.Email);
+            actualName.Should().Be("Name:" + (string)data.FullName);
+            actualemail.Should().Be("Email:" + (string)data.Email);
             actualCurrent.Trim().Should().Be("Current Address :" + (string)data.CurrentAddress);
-            actualPermanet.Should().Be("Permananet Address :"+(string)data.PermanentAddress);
+            actualPermanet.Should().Be("Permananet Address :" + (string)data.PermanentAddress);
         }
 
         [Given("I enter following User details")]
-        public async Task ThenTheResultShouldBeAsync(Table table)
+        public async Task FillDetail(Table table)
         {
             dynamic data = table.CreateDynamicInstance();
             await _demoObject.EnterDetails((string)data.FullName, (string)data.Email, (string)data.CurrentAddress, (string)data.PermanentAddress);
+        }
+
+        [Given("I click the Home checkbox option")]
+        public async Task ClickCheckbox()
+        {
+            await _demoObject.ClickCheckBox();
+        }
+        [Then("Verify the details '(.*)'")]
+        public async Task CheckboxVerify(string text)
+        {
+            var checkboxText = await _demoObject.VerifyCheckboxText();
+            checkboxText.Should().Contain(text);
         }
     }
 }
